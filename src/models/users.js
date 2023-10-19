@@ -1,0 +1,122 @@
+const mongoose = require("mongoose");
+
+
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        min: 1,
+        max: 30
+    },
+    userId: {
+        type: String,
+        required: true,
+        unique: true,
+        min: 3,
+        max: 30
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    postalCode: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    address: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    phoneNumber: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        unique: true,
+        trim: true
+    },
+    icon: {
+        type: String,
+        default: ""
+    },
+    header: {
+        type: String,
+        default: ""
+    },
+    defaultIcon: {
+        type: String,
+        required: true,
+    },
+    defaultHeader: {
+        type: String,
+        required: true,
+    },
+    desc: {
+        type: String,
+        max: 500,
+        default: ""
+    },
+    points: {
+        type: Number,
+        default: 0
+    },
+    followings: {
+        type: Array,
+        default: []
+    },
+    followers: {
+        type: Array,
+        default: []
+    },
+    blockUsers: {
+        type: Array,
+        default: []
+    },
+    likes: {
+        type: Array,
+        default: []
+    },
+    products: {
+        type: Array,
+        default: []
+    },
+    purchasings: {
+        type: Array,
+        default: []
+    },
+    purchased: {
+        type: Array,
+        default: []
+    },
+    groups: {
+        type: Array,
+        default: []
+    },
+    authToken: {
+        hashedToken: {
+            type: String,
+            default: ""
+        },
+        createdAt: {
+            type: Date,
+            default: null
+        },
+        unverifiedEmail: {
+            type: String,
+            default: ""
+        }
+    },
+    isAuthorized: {
+        type: Boolean,
+        default: false
+    }
+},
+{timestamps: true})
+
+
+module.exports = mongoose.model("User", userSchema);
