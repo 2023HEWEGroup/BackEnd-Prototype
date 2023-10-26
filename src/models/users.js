@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
-        trim: true
+        trim: true,
     },
     icon: {
         type: String,
@@ -112,6 +112,10 @@ const userSchema = new mongoose.Schema({
         }
     },
     isAuthorized: {
+        type: Boolean,
+        default: false
+    },
+    isAdmin: {
         type: Boolean,
         default: false
     }

@@ -1,14 +1,14 @@
 const router = require("express").Router();
-const { loginValidation } = require("../../validations/authValidations/loginValidation");
 const { isError } = require("../../validations/isError");
 const { getBodyUser } = require("../../controllers/userControllers/getBodyUser");
-const { verifyPassword } = require("../../utils/authUtils/verifyPassword");
+const { authLoginValidation } = require("../../validations/authValidations/authLoginValidation");
+const { verifyPassword } = require("../../utils/commonUtils/verifyPassword");
 
 
 // ログインAPI
 
 router.post("/",
-    loginValidation,
+    authLoginValidation,
     isError,
     getBodyUser,
     verifyPassword,

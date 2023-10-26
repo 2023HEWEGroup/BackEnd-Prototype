@@ -9,7 +9,7 @@ exports.getParamsUser = async (req, res, next) => {
         if (!user) {
             return res.status(404).json("ユーザーが見つかりません (params)")
         }
-        req.paramsUser = user
+        req.paramsUser = user;
         next();
     } catch (err) {
         return res.status(500).json(err);

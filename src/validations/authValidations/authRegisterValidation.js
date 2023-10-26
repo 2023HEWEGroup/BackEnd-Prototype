@@ -4,7 +4,7 @@ const User = require("../../models/users");
 
 // 新規登録バリデート処理
 
-exports.registerValidation = [
+exports.authRegisterValidation = [
     body("username").isLength({min: 1, max: 30}).withMessage("ユーザーネームは1~30字である必要があります"),
     body("username").custom((value) => {
         if (value.trim() === "") {throw new Error("ユーザーネームは空白のみの入力が出来ません")}
@@ -44,7 +44,7 @@ exports.registerValidation = [
     body("unverifiedEmail").notEmpty().withMessage("メールアドレスを入力して下さい"),
     body("unverifiedEmail").isEmail().withMessage("正しいメールアドレスを入力して下さい"),
     body("unverifiedEmail").custom((value) => {
-        return User.findOne({email: value}).then((user) => {
+        return User.findOne({$or : [{email: value}, {"authToken.unverifiedEmail": value}]}).then((user) => {
             if (user) {return Promise.reject("このメールアドレスはすでに使用されています")}
         })
     }),

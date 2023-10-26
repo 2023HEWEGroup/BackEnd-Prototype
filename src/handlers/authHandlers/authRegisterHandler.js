@@ -5,7 +5,7 @@ const User = require("../../models/users");
 
 // ユーザーの新規登録処理
 
-exports.registerHandler = async (req, res) => {
+exports.authRegisterHandler = async (req, res, next) => {
     try {
         const uuid = uuidv4();
         const randomInt = Math.floor(Math.random() * 6) + 1;
@@ -20,13 +20,16 @@ exports.registerHandler = async (req, res) => {
             phoneNumber: req.body.phoneNumber,
             email: uuid,
             authToken: {
+                hashedToken: req.hashedToken,
+                createdAt: new Date(),
                 unverifiedEmail: req.body.unverifiedEmail,
             },
             defaultIcon: `default_icon${randomInt}.png`,
             defaultHeader: `default_header${randomInt}.png`
         })
         const user = await newUser.save();
-        return res.status(200).json(user);
+        req.user = user;
+        next();
     } catch (err) {
         return res.status(500).json(err);
     }

@@ -21,8 +21,7 @@ app.use(helmet());
 
 const authRoute = require("./src/routes/authRoutes");
 const userRoute = require("./src/routes/userRoutes");
-// const productRoute = require("./routes/product");
-// const interactionRoute = require("./routes/interaction");
+const productRoute = require("./src/routes/productRoutes");
 // const tradeRoute = require("./routes/trade");
 // const groupRoute = require("./routes/group");
 
@@ -31,8 +30,7 @@ const userRoute = require("./src/routes/userRoutes");
 
 app.use("/client/auth", authRoute);
 app.use("/client/user", userRoute);
-// app.use("/client/product", productRoute);
-// app.use("/client/interaction", interactionRoute);
+app.use("/client/product", productRoute);
 // app.use("/client/trade", tradeRoute);
 // app.use("/client/group", groupRoute);
 
