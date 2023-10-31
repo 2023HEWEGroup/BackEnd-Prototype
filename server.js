@@ -8,6 +8,7 @@ const app = express();
 
 const mongoose = require("mongoose");
 const helmet = require("helmet");
+const cors = require("cors");
 require("dotenv").config();
 
 
@@ -15,6 +16,9 @@ require("dotenv").config();
 
 app.use(express.json());
 app.use(helmet());
+app.use(cors({
+    origin: "http://localhost:3000",
+}))
 
 
 // APIルートの分割
