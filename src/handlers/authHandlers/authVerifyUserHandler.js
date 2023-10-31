@@ -1,14 +1,14 @@
 const CryptoJS = require("crypto-js");
 
 
-// ユーザーの新規登録処理
+// ユーザーの二段階認証処理
 
 exports.authverifyUserHandler = async (req, res, next) => {
     try {
         // トークンの認証
         const user = req.paramsUser;
         const token = req.body.token;
-        const decryptedToken = CryptoJS.AES.decrypt(user.authToken.hashedToken, process.env.AUTH_CODE_HASH_KEY).toString(CryptoJS.enc.Utf8);
+        const decryptedToken = CryptoJS.AES.decrypt(user.authToken.hashedToken, process.env.AUTH_TOKEN_HASH_KEY).toString(CryptoJS.enc.Utf8);
         if (token !== decryptedToken) {
             return res.status(401).json("認証トークンが無効です");
         };
