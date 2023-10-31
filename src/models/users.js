@@ -19,6 +19,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    upperName: {
+        type: String,
+        required: true,
+    },
+    lowerName: {
+        type: String,
+        required: true,
+    },
+    upperNameKana: {
+        type: String,
+        required: true,
+    },
+    lowerNameKana: {
+        type: String,
+        required: true,
+    },
     postalCode: {
         type: String,
         required: true,
@@ -28,6 +44,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    houseNumber: {
+        type: String,
+        default: "",
     },
     phoneNumber: {
         type: String,
@@ -110,6 +130,21 @@ const userSchema = new mongoose.Schema({
             type: String,
             default: ""
         }
+    },
+    creditCard: {
+        number: {
+            type: String,
+            unique: true,
+            default: "",
+        },
+        cvc: {
+            type: String,
+            default: "",
+        },
+        expiry: {
+            type: String,
+            default: "",
+        },
     },
     isAuthorized: {
         type: Boolean,
