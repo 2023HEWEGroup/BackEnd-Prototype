@@ -5,6 +5,7 @@ const authVerifyUserApi = require("../api/authApi/authVerifyUserApi");
 const authExchangeEmailApi = require("../api/authApi/authExchangeEmailApi");
 
 
+
 // APIルーティング
 
 router.use("/register", authRegisterApi);
