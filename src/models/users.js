@@ -17,7 +17,9 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        min: 8,
+        max: 30
     },
     upperName: {
         type: String,
@@ -132,6 +134,10 @@ const userSchema = new mongoose.Schema({
         }
     },
     creditCard: {
+        cardName: {
+            type: String,
+            default: "",
+        },
         number: {
             type: String,
             unique: true,

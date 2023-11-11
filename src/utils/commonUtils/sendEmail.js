@@ -21,7 +21,9 @@ exports.sendEmail = async (req, res, next, to, subject, text) => {
             },
             to: to,
             subject: subject,
-            text: text,
+            text:
+            `${text}\n\n${process.env.MAIL_INFO}
+            `,
         });
         next();
     } catch (err) {

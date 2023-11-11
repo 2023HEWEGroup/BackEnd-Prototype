@@ -7,11 +7,17 @@ const userUploadHeaderApi = require("../api/userApi/userUploadHeaderApi");
 const userDeleteHeaderApi = require("../api/userApi/userDeleteHeaderApi");
 const userFollowApi = require("../api/userApi/userFollowApi");
 const userBlockApi = require("../api/userApi/userBlockApi");
+const userGetByIdApi = require("../api/userApi/userGetById");
+const userGetByEmailApi = require("../api/userApi/userGetByEmail");
+const userGetByPhoneApi = require("../api/userApi/userGetByPhone");
 
 
 // APIルーティング
 
 router.use("/get", userGetApi);
+router.use("/getById", userGetByIdApi);
+router.use("/getByEmail", userGetByEmailApi);
+router.use("/getByPhone", userGetByPhoneApi);
 router.use("/update", userUpdateApi);
 router.use("/uploadIcon", userUploadIconApi);
 router.use("/deleteIcon", userDeleteIconApi);

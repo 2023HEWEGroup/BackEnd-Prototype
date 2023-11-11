@@ -6,7 +6,7 @@ const CryptoJS = require("crypto-js");
 exports.verifyPassword = (req, res, next) => {
     try {
         const password = req.body.password;
-        const user = req.bodyUser;
+        const user = req.bodyUser || req.emailUser;
         const decryptedPassword = CryptoJS.AES.decrypt(user.password, process.env.PASSWORD_SECRET_KEY).toString(CryptoJS.enc.Utf8);
         if (decryptedPassword !== password) {
             return res.status(401).json("パスワードが無効です");
