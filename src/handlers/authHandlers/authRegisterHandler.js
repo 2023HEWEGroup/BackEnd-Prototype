@@ -20,7 +20,10 @@ exports.authRegisterHandler = async (req, res, next) => {
             upperNameKana: req.body.upperNameKana,
             lowerNameKana: req.body.lowerNameKana,
             postalCode: req.body.postalCode,
-            address: req.body.prefecture + req.body.city + req.body.town + req.body.houseNumber || "",
+            prefecture: req.body.prefecture,
+            city: req.body.city,
+            town: req.body.town,
+            houseNumber: req.body.houseNumber ? req.body.houseNumber : "",
             phoneNumber: req.body.phoneNumber,
             email: uuid,
             authToken: {

@@ -8,12 +8,14 @@ exports.productExhibitHandler = async (req, res, next) => {
         const user = req.bodyUser;
         const newProduct = await new Product({
             productName: req.body.productName,
+            desc: req.body.desc,
+            price: req.body.price,
+            condition: req.body.condition,
+            shippingArea: req.body.shippingArea,
+            deliveryCost: req.body.deliveryCost,
             productImg: req.body.productImg,
             sellerId: user._id.toString(),
-            desc: req.body.desc,
-            condition: req.body.condition,
             tags: req.body.tags,
-            price: req.body.price,
         })
         const product = await newProduct.save();
         req.product = product;

@@ -6,7 +6,7 @@ const router = require("express").Router();
 // 商品画像アップロードAPI
 
 router.post("/",
-    imageUpload(process.env.PRODUCT_IMAGE_UPLOAD_PATH).array("productImage", 4),
+    imageUpload(process.env.PRODUCT_IMAGE_UPLOAD_PATH).array("productImage", 8),
     returnProductImageName,
     (req, res) => {
         return res.status(200).json(req.fileNames);

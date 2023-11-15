@@ -42,7 +42,17 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    address: {
+    prefecture: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    city: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    town: {
         type: String,
         required: true,
         trim: true
