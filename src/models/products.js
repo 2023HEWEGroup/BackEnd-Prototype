@@ -8,9 +8,16 @@ const productSchema = new mongoose.Schema({
         min: 1,
         max: 50
     },
-    productImg: {
-        type: Array,
-        require: true
+    desc: {
+        type: String,
+        max: 500,
+        default: ""
+    },
+    price: {
+        type: Number,
+        required: true,
+        min: 300,
+        max: 9999999
     },
     sellerId: {
         type: String,
@@ -21,25 +28,24 @@ const productSchema = new mongoose.Schema({
         default: null
     },
     condition: {
-        type: Number,
-        required: true,
-        min: 1,
-        max: 5
-    },
-    desc: {
         type: String,
-        max: 500,
-        default: ""
+        required: true,
+    },
+    shippingArea: {
+        type: String,
+        required: true,
+    },
+    deliveryCost: {
+        type: String,
+        required: true,
+    },
+    productImg: {
+        type: Array,
+        required: true
     },
     tags: {
         type: Array,
         default: []
-    },
-    price: {
-        type: Number,
-        required: true,
-        min: 100,
-        max: 9999999
     },
     likes: {
         type: Array,

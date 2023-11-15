@@ -1,5 +1,4 @@
 const multer = require("multer");
-const path = require("path");
 
 
 // 画像をアップロードする関数 (引数でパスを指定)
@@ -12,8 +11,7 @@ exports.imageUpload = (uploadPath) => {
             },
             filename: (req, file, cb) => {
                 const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9) + "-" + Math.round(Math.random() * 1e9);
-                const fileExtension = path.extname(file.originalname);
-                const fileName = file.fieldname + "-" + uniqueSuffix + fileExtension;
+                const fileName = file.fieldname + "-" + uniqueSuffix + ".png";
                 req.fileName = fileName;
                 cb(null, fileName);
             }

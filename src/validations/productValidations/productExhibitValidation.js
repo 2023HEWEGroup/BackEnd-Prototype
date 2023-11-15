@@ -10,10 +10,12 @@ exports.productExhibitValidation = [
         return true;
     }),
     body("productImg").custom((value) => {
-        if (!(value.length >= 1 && value.length <= 4)) {throw new Error("商品画像は1~4枚である必要があります")};
+        if (!(value.length >= 1 && value.length <= 8)) {throw new Error("商品画像は1~8枚である必要があります")};
         return true;
     }),
     body("desc").isLength({max: 500}).withMessage("商品説明文は500字以内です"),
-    body("condition").isInt({min: 1, max: 5}).withMessage("コンディションは1~5である必要があります"),
-    body("price").isInt({min: 100, max: 9999999}).withMessage("価格は100~9999999円である必要があります"),
+    body("condition").notEmpty().withMessage("商品の状態を選択して下さい"),
+    body("price").isInt({min: 300, max: 9999999}).withMessage("価格は300~9999999円である必要があります"),
+    body("shippingArea").notEmpty().withMessage("発送元地域を選択して下さい"),
+    body("deliveryCost").notEmpty().withMessage("配送料の負担者を選択して下さい"),
 ];
