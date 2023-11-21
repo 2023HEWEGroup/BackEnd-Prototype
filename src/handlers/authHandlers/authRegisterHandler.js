@@ -38,7 +38,6 @@ exports.authRegisterHandler = async (req, res, next) => {
                 expiry: req.body.expiry ? req.body.expiry : "",
             },
             defaultIcon: `default_icon${randomInt}.png`,
-            defaultHeader: `default_header${randomInt}.png`
         })
         const user = await newUser.save();
         req.user = user;

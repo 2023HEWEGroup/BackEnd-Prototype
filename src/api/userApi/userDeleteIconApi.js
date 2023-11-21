@@ -5,7 +5,7 @@ const router = require("express").Router();
 
 // ユーザーアイコン削除API
 
-router.delete("/:userId",
+router.delete("/:_id",
     getParamsUser,
     userDeleteIconHandler,
     (req, res) => {

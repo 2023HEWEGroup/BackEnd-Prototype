@@ -84,10 +84,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    defaultHeader: {
-        type: String,
-        required: true,
-    },
     desc: {
         type: String,
         max: 500,

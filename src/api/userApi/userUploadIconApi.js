@@ -6,7 +6,7 @@ const router = require("express").Router();
 
 // ユーザーアイコンアップロードAPI
 
-router.put("/:userId",
+router.put("/:_id",
     getParamsUser,
     imageUpload(process.env.USER_ICON_UPLOAD_PATH).single("userIcon"),
     userUploadIconHandler,

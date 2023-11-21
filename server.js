@@ -9,13 +9,16 @@ const app = express();
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 
 // アプリの設定
 
 app.use(express.json());
-app.use(helmet());
+app.use(helmet({
+    crossOriginResourcePolicy: false, // フロントのsrc属性から画像を指定したとき、ヘルメットが阻止するのを防ぐ。
+}));
 app.use(cors({
     origin: "http://localhost:3000",
 }))
@@ -37,6 +40,10 @@ app.use("/client/user", userRoute);
 app.use("/client/product", productRoute);
 // app.use("/client/trade", tradeRoute);
 // app.use("/client/group", groupRoute);
+
+// その他ルーティング
+
+app.use("/uploads", express.static(path.join(__dirname, 'uploads')));
 
 
 // MongoDBに接続

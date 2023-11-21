@@ -7,7 +7,7 @@ const router = require("express").Router();
 
 // ユーザープロフィール更新API
 
-router.put("/:userId",
+router.put("/:_id",
     userUpdateValidation,
     isError,
     getParamsUser,
