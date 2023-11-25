@@ -6,7 +6,7 @@ const router = require("express").Router();
 
 // ユーザーヘッダーアップロードAPI
 
-router.put("/:userId",
+router.put("/:_id",
     getParamsUser,
     imageUpload(process.env.USER_HEADER_UPLOAD_PATH).single("userHeader"),
     userUploadHeaderHandler,

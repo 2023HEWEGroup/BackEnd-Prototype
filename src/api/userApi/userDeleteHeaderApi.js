@@ -5,7 +5,7 @@ const router = require("express").Router();
 
 // ユーザーヘッダー削除API
 
-router.delete("/:userId",
+router.delete("/:_id",
     getParamsUser,
     userDeleteHeaderHandler,
     (req, res) => {
