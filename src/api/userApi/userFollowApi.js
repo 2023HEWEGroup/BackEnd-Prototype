@@ -6,7 +6,7 @@ const router = require("express").Router();
 
 // ユーザーフォローAPI
 
-router.put("/:userId",
+router.put("/:_id",
     getBodyUser,
     getParamsUser,
     userFollowHandler,

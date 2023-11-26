@@ -10,7 +10,7 @@ exports.getParamsUser = async (req, res, next) => {
         if (req.params._id) {
             user = await User.findById(userId);
         } else if (req.params.userId) {
-            user = await User.findOne({userId: userId})
+            user = await User.findOne({userId: userId});
         }
         if (!user) {
             return res.status(404).json("ユーザーが見つかりません (params)")
