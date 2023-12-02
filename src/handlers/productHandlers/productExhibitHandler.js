@@ -13,6 +13,7 @@ exports.productExhibitHandler = async (req, res, next) => {
             condition: req.body.condition,
             shippingArea: req.body.shippingArea,
             deliveryCost: req.body.deliveryCost,
+            category: req.body.category,
             productImg: req.body.productImg,
             sellerId: user._id.toString(),
             tags: req.body.tags,
