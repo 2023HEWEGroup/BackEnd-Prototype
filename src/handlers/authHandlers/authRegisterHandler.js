@@ -33,7 +33,8 @@ exports.authRegisterHandler = async (req, res, next) => {
             },
             creditCard: {
                 cardName: req.body.cardName ? req.body.cardName : "",
-                number: req.body.number ? CryptoJS.AES.encrypt(req.body.number, process.env.CREDIT_CARD_NUMBER_KEY) : uuid,
+                // 今回のHEW出展においては、ユニークなクレジットカードナンバーを許可しない。なぜなら、テストで使用できるナンバーが限られているから。
+                number: req.body.number ? CryptoJS.AES.encrypt(req.body.number, process.env.CREDIT_CARD_NUMBER_KEY) : "",
                 cvc: req.body.cvc ? CryptoJS.AES.encrypt(req.body.cvc, process.env.CREDIT_CARD_CVC_KEY) : "",
                 expiry: req.body.expiry ? req.body.expiry : "",
             },

@@ -4,6 +4,7 @@ const authLoginApi = require("../api/authApi/authLoginApi");
 const authLoginByEmailApi = require("../api/authApi/authLoginByEmail");
 const authVerifyUserApi = require("../api/authApi/authVerifyUserApi");
 const authExchangeEmailApi = require("../api/authApi/authExchangeEmailApi");
+const authResendMailApi = require("../api/authApi/authResendMail");
 
 
 // APIルーティング
@@ -13,6 +14,7 @@ router.use("/login", authLoginApi);
 router.use("/loginByEmail", authLoginByEmailApi);
 router.use("/verify", authVerifyUserApi);
 router.use("/exchangeEmail", authExchangeEmailApi);
+router.use("/resendMail", authResendMailApi);
 
 
 module.exports = router;

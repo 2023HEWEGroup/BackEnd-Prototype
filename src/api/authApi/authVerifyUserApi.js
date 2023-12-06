@@ -5,7 +5,7 @@ const router = require("express").Router();
 
 // 二段階認証API
 
-router.post("/:userId", 
+router.post("/:_id", 
     getParamsUser,
     authverifyUserHandler,
     (req, res) => {

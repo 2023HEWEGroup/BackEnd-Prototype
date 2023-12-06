@@ -146,7 +146,6 @@ const userSchema = new mongoose.Schema({
         },
         number: {
             type: String,
-            unique: true,
             default: "",
         },
         cvc: {

@@ -9,7 +9,7 @@ const router = require("express").Router();
 
 // メールアドレス変更API
 
-router.post("/:userId",
+router.post("/:_id",
     getParamsUser,
     authExchangeEmailValidation,
     isError,

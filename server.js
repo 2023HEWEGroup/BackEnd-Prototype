@@ -29,8 +29,7 @@ app.use(cors({
 const authRoute = require("./src/routes/authRoutes");
 const userRoute = require("./src/routes/userRoutes");
 const productRoute = require("./src/routes/productRoutes");
-// const tradeRoute = require("./routes/trade");
-// const groupRoute = require("./routes/group");
+const settingRoute = require("./src/routes/settingRoutes");
 
 
 // APIルーティング
@@ -38,8 +37,8 @@ const productRoute = require("./src/routes/productRoutes");
 app.use("/client/auth", authRoute);
 app.use("/client/user", userRoute);
 app.use("/client/product", productRoute);
-// app.use("/client/trade", tradeRoute);
-// app.use("/client/group", groupRoute);
+app.use("/client/setting", settingRoute);
+
 
 // その他ルーティング
 
