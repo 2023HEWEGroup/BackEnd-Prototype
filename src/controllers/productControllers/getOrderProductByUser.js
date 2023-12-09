@@ -1,7 +1,7 @@
 const Product = require("../../models/products");
 
 
-// 対象ユーザーの商品を最新雄物から決まった数ずつ取得する
+// 対象ユーザーの商品を最新の物から決まった数ずつ取得する
 
 exports.getOrderProductByUser = async (req, res, next) => {
     try {

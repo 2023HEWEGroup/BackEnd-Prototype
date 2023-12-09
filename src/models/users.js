@@ -54,7 +54,6 @@ const userSchema = new mongoose.Schema({
     },
     town: {
         type: String,
-        required: true,
         trim: true
     },
     houseNumber: {

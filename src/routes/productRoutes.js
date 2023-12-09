@@ -6,6 +6,7 @@ const productImageUploadApi = require("../api/productApi/productImageUploadApi")
 const productImageExchangeApi = require("../api/productApi/productImageExchangeApi");
 const productLikeApi = require("../api/productApi/productLikeApi");
 const productGetOrderByUserApi = require("../api/productApi/productGetOrderByUser");
+const productGetNewestApi = require("../api/productApi/productGetNewestApi");
 
 
 // APIルーティング
@@ -17,6 +18,7 @@ router.use("/imageUpload", productImageUploadApi);
 router.use("/imageExchange", productImageExchangeApi);
 router.use("/like", productLikeApi);
 router.use("/getOrderUser", productGetOrderByUserApi);
+router.use("/getNewest", productGetNewestApi);
 
 
 module.exports = router;

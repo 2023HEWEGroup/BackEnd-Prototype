@@ -56,7 +56,6 @@ exports.authRegisterValidation = [
     body("postalCode").isPostalCode("JP").withMessage("正しい郵便番号を入力して下さい"),
     body("prefecture").notEmpty().withMessage("県を入力して下さい"),
     body("city").notEmpty().withMessage("市を入力して下さい"),
-    body("town").notEmpty().withMessage("町を入力して下さい"),
     body("phoneNumber").notEmpty().withMessage("電話番号を入力して下さい"),
     body("phoneNumber").isMobilePhone("ja-JP").withMessage("正しい電話番号を入力して下さい"),
     body("phoneNumber").custom((value) => {
@@ -76,10 +75,5 @@ exports.authRegisterValidation = [
     body("confirmEmail").custom((value, { req }) => {
         if (value !== req.body.unverifiedEmail) {throw new Error("メールアドレスが一致しません")}
         return true;
-    }),
-    body("number").custom((value) => {
-        return User.findOne({"creditCard.number": value}).then((user) => {
-            if (user) {return Promise.reject("このクレジットカード番号はすでに使用されています")}
-        })
     }),
 ];
