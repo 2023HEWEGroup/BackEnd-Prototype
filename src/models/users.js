@@ -92,6 +92,10 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    theme: {
+        type: String,
+        default: "ダークブルー",
+    },
     followings: {
         type: Array,
         default: []
