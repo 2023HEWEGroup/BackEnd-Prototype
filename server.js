@@ -30,6 +30,7 @@ const authRoute = require("./src/routes/authRoutes");
 const userRoute = require("./src/routes/userRoutes");
 const productRoute = require("./src/routes/productRoutes");
 const settingRoute = require("./src/routes/settingRoutes");
+const notifyRoute = require("./src/routes/notifyRoutes");
 
 
 // APIルーティング
@@ -38,6 +39,7 @@ app.use("/client/auth", authRoute);
 app.use("/client/user", userRoute);
 app.use("/client/product", productRoute);
 app.use("/client/setting", settingRoute);
+app.use("/client/notify", notifyRoute);
 
 
 // その他ルーティング
