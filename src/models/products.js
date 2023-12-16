@@ -22,6 +22,7 @@ const productSchema = new mongoose.Schema({
     sellerId: {
         type: String,
         required: true,
+        ref: "User",
     },
     groupId: {
         type: String,

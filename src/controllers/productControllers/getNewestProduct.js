@@ -10,7 +10,7 @@ exports.getNewestProduct = async (req, res, next) => {
         .sort({ createdAt: -1 })
         .skip((page - 1) * pageSize)
         .limit(Number(pageSize))
-        .populate('sellerId', ['userId', '_id']);
+        .populate('sellerId', ['userId']);
         req.products = products;
         next();
     } catch (err) {
