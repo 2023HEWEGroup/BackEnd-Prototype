@@ -13,7 +13,7 @@ router.post("/",
     getBodyUser,
     productExhibitHandler,
     (req, res) => {
-        return res.status(200).json("商品の出品が完了しました");
+        return res.status(200).json(req.product);
     }
 )
 
