@@ -7,6 +7,7 @@ const productImageExchangeApi = require("../api/productApi/productImageExchangeA
 const productLikeApi = require("../api/productApi/productLikeApi");
 const productGetOrderByUserApi = require("../api/productApi/productGetOrderByUser");
 const productGetNewestApi = require("../api/productApi/productGetNewestApi");
+const producRandomGetApi = require("../api/productApi/productRandomGetApi");
 
 
 // APIルーティング
@@ -19,6 +20,7 @@ router.use("/imageExchange", productImageExchangeApi);
 router.use("/like", productLikeApi);
 router.use("/getOrderUser", productGetOrderByUserApi);
 router.use("/getNewest", productGetNewestApi);
+router.use("/getRandom", producRandomGetApi);
 
 
 module.exports = router;
