@@ -15,6 +15,7 @@ const userGetSearchAllApi = require("../api/userApi/userGetSearchAllApi");
 const userGetFollowersApi = require("../api/userApi/userGetFollowersApi");
 const userGetFollowingsApi = require("../api/userApi/userGetFollowingsApi");
 const userGetOutsiderApi = require("../api/userApi/userGetOutsiderApi");
+const userGetRandomApi = require("../api/userApi/userGetRandomApi");
 
 
 // APIルーティング
@@ -35,6 +36,7 @@ router.use("/searchAll", userGetSearchAllApi);
 router.use("/getFollowers", userGetFollowersApi);
 router.use("/getFollowings", userGetFollowingsApi);
 router.use("/getOutsider", userGetOutsiderApi);
+router.use("/getRandom", userGetRandomApi);
 
 
 module.exports = router;
