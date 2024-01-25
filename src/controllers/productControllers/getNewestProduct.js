@@ -5,8 +5,8 @@ const Product = require("../../models/products");
 
 exports.getNewestProduct = async (req, res, next) => {
     try {
-        const { page, pageSize } = req.query;
-        const products = await Product.find()
+        const { page, pageSize, category } = req.query;
+        const products = await Product.find(category === "すべての商品" ? null : {category: category})
         .sort({ createdAt: -1 })
         .skip((page - 1) * pageSize)
         .limit(Number(pageSize))
