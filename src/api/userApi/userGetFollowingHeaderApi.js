@@ -1,12 +1,12 @@
-const { getAllSearchUser } = require("../../controllers/userControllers/getAllSearchUser");
+const { getFollowingHeaderUsers } = require("../../controllers/userControllers/getFollowingHeaderUser");
 const { getParamsUser } = require("../../controllers/userControllers/getParamsUser");
 const router = require("express").Router();
 
-// 検索ワードに合致するユーザーをページネーション対応で取得するAPI (userIdとusername)
+// あるユーザーのフォローを指定件数、総数と共に取得するAPI (/followingのヘッダー表示用)
 
 router.get("/:_id",
     getParamsUser,
-    getAllSearchUser,
+    getFollowingHeaderUsers,
     (req, res) => {
         return res.status(200).json({users: req.users, num: req.num});
     }
