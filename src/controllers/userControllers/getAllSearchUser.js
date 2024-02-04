@@ -10,7 +10,6 @@ exports.getAllSearchUser = async (req, res, next) => {
 
         let query = { $or: [{username: {$regex: searchWord, $options: 'i'}}, {userId: {$regex: searchWord, $options: 'i'}}]};
 
-        console.log(mode)
         if (mode == "following") query = {...query, _id: {$in: req.paramsUser.followings}};
         else if (mode == "follower") query = {...query, _id: {$in: req.paramsUser.followers}};
         else if (mode === "authorized") query = {...query, isAuthorized: true};

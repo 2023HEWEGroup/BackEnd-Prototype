@@ -1,4 +1,3 @@
-const { getFollowerUsers } = require("../../controllers/userControllers/getFollowerUsers");
 const { getFollowingUsers } = require("../../controllers/userControllers/getFollowingUsers");
 const { getParamsUser } = require("../../controllers/userControllers/getParamsUser");
 const router = require("express").Router();
