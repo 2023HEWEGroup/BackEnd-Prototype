@@ -31,6 +31,8 @@ const userRoute = require("./src/routes/userRoutes");
 const productRoute = require("./src/routes/productRoutes");
 const settingRoute = require("./src/routes/settingRoutes");
 const notifyRoute = require("./src/routes/notifyRoutes");
+const groupRoute = require("./src/routes/groupRoutes");
+
 
 
 // APIルーティング
@@ -40,6 +42,7 @@ app.use("/client/user", userRoute);
 app.use("/client/product", productRoute);
 app.use("/client/setting", settingRoute);
 app.use("/client/notify", notifyRoute);
+app.use("/client/group", groupRoute);
 
 
 // その他ルーティング
