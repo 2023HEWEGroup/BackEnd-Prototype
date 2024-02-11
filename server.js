@@ -65,3 +65,24 @@ try {
 app.listen(process.env.PORT, (req, res) => {
     console.log("サーバーが起動しました");
 })
+
+
+// socket.IO
+const server = require("http").createServer(app); // Expressを用いないserverも必要なので作成
+
+// サーバーオブジェクトsocketioを作成する
+const { Server } = require("socket.io");
+const { socketConnection } = require("./socketIO/socketConnection");
+const io = new Server(server, {
+    cors: {                      // corsモジュールでは上手くCORSできないため、Server作成時の引数にオプションを追加する
+        origin: "*",
+        methods: ["GET", "POST"],
+    },
+});
+
+// ブラウザから接続されたときの処理を定義する
+io.on('connection', socketConnection(io));
+
+// serverを別ポートで待ち受ける。
+// ※app.listenだとNG。
+server.listen(process.env.SOCKET_IO_PORT);
