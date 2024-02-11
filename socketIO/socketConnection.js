@@ -1,6 +1,9 @@
 const { createRoom } = require("./requests/createRoom");
 const { enterRoom } = require("./requests/enterRoom");
+const { offerToNewAudience } = require("./requests/offerToNewAudience");
 const { showGroupBroadcasts } = require("./requests/showGroupBroadcasts");
+const { updateAudienceSocketId } = require("./requests/updateAuudienceSocketId");
+const { updateLiverSocketId } = require("./requests/updateLiverSocketId");
 
 
 const socketConnection = (io) => (socket) => {
@@ -17,10 +20,30 @@ const socketConnection = (io) => (socket) => {
         createRoom(io)(socket)(groupId)(roomName)(liverId);
     });
 
+    // 配信者socketId更新 (Liverのwindowに)
+    socket.on('updateLiverSocketId', (roomId) => {
+        updateLiverSocketId(io)(socket)(roomId)
+    })
+
     // チャットルーム入室要求
     socket.on('enterRoom', (roomId, userId, groupId, index) => {
         enterRoom(io)(socket)(roomId)(userId)(groupId)(index);
     });
+
+    // 参加者socketId更新 (Audienceのwindowに)
+    socket.on('updateAudienceSocketId', (roomId) => {
+        updateAudienceSocketId(io)(socket)(roomId);
+    })
+
+    // 配信者から参加者にofferを送信
+    socket.on('offerToNewAudience', (audienceSocketId, localDescription) => {
+        offerToNewAudience(io)(socket)(audienceSocketId)(localDescription);
+    })
+
+    // 参加者から配信者にanswerを送信
+    socket.on('answerForLiver', (answerForLiver, liverSocketId) => {
+        io.to(liverSocketId).emit("answer", answerForLiver, socket.id);
+    })
 
     socket.on('disconnect', () => {
         console.log('A client disconnected');
