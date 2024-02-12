@@ -7,12 +7,15 @@ const createRoom = (io) => (socket) => (groupId) => (roomName) => (liverId) => {
         roomId: roomId,
         name: roomName,
         liverId: liverId,
-        users: [liverId] // クライアントのSocket.IOのIDを追加
+        liverSocketId: socket.id, // 配信者のsocketIDを格納 (ここ宛てにcallしたり)
+        users: [liverId], // 配信者のオブジェクトIDを追加
+        audienceSocketIds: [],
     };
     // グループの配信一覧に新しい配信を追加する
     if (!groupBroadcasts[groupId]) {
         groupBroadcasts[groupId] = [];
     }
+    console.log(groupBroadcasts)
     groupBroadcasts[groupId].push(newRoom);
     // 配信者をルームに追加
     socket.join(`broadcast_${roomId}`);
