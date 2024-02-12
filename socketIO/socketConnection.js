@@ -45,6 +45,16 @@ const socketConnection = (io) => (socket) => {
         io.to(liverSocketId).emit("answer", answerForLiver, socket.id);
     })
 
+    // 配信者から参加者にICEを送信
+    socket.on('iceFromPeer', (ICE, audienceSocketId) => {
+        io.to(audienceSocketId).emit("iceFromLiver", ICE, socket.id);
+    })
+
+    // 参加者から配信者にICEを送信
+    socket.on('iceFromAudience', (ICE, liverSocketId) => {
+        io.to(liverSocketId).emit("iceFromAudience", ICE, socket.id);
+    })
+
     socket.on('disconnect', () => {
         console.log('A client disconnected');
     });
