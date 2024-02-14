@@ -9,8 +9,24 @@ const updateLiverSocketId = (io) => (socket) => (roomId) => {
             const roomToUpdate = groupBroadcasts[groupId].find(room => room.roomId === roomId);
             if (roomToUpdate) {
                 roomToUpdate.liverSocketId = socket.id;
-                roomToUpdate.users[0].socketId = socket.id; // users配列の0番目(配信者)のsocketIdも更新
-                console.log(`Updated liverSocketId for room ${roomId} in group ${groupId}: ${socket.id}`);
+                roomToUpdate.userSocketIds.push(socket.id);
+                // console.log(`Updated liverSocketId for room ${roomId} in group ${groupId}: ${socket.id}`);
+
+                // 新しいウィンドウの配信者のsocketIdをルームに追加
+                socket.join(`broadcast_${roomId}`);
+
+                // // 新しいウィンドウの配信者のsocketIdを表示
+                // console.log("配信ウィンドウの配信者socketid", socket.id);
+
+                // // 配信ルーム内のすべてのsocketId
+                // const room = io.sockets.adapter.rooms.get(`broadcast_${roomId}`);
+                // if (room) {
+                //     const socketsInRoom = Array.from(room);
+                //     console.log("配信ルーム内のsocketId一覧", socketsInRoom);
+                // }
+                
+                console.log("配信者SocketID:", socket.id);
+
                 return; // 部屋が見つかったら更新して終了
             }
         }
