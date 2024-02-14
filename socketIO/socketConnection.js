@@ -16,8 +16,8 @@ const socketConnection = (io) => (socket) => {
     });
 
     // チャットルーム作成要求
-    socket.on('createRoom', (groupId, roomName, liverId) => {
-        createRoom(io)(socket)(groupId)(roomName)(liverId);
+    socket.on('createRoom', (groupId, roomName, liverId, liverName) => {
+        createRoom(io)(socket)(groupId)(roomName)(liverId)(liverName);
     });
 
     // 配信者socketId更新 (Liverのwindowに)

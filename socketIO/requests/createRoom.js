@@ -1,12 +1,13 @@
 const { v4: uuidv4 } = require('uuid');
 const { groupBroadcasts } = require('../data/socketData');
 
-const createRoom = (io) => (socket) => (groupId) => (roomName) => (liverId) => {
+const createRoom = (io) => (socket) => (groupId) => (roomName) => (liverId) => (liverName) => {
     const roomId = uuidv4(); // UUIDを生成
     const newRoom = {
         roomId: roomId,
         name: roomName,
         liverId: liverId,
+        liverName: liverName,
         liverSocketId: socket.id, // 配信者のsocketIDを格納 (ここ宛てにcallしたり)
         users: [liverId], // 配信者のオブジェクトIDを追加
         audienceSocketIds: [],

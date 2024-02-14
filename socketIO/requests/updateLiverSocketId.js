@@ -9,6 +9,7 @@ const updateLiverSocketId = (io) => (socket) => (roomId) => {
             const roomToUpdate = groupBroadcasts[groupId].find(room => room.roomId === roomId);
             if (roomToUpdate) {
                 roomToUpdate.liverSocketId = socket.id;
+                roomToUpdate.users[0].socketId = socket.id; // users配列の0番目(配信者)のsocketIdも更新
                 console.log(`Updated liverSocketId for room ${roomId} in group ${groupId}: ${socket.id}`);
                 return; // 部屋が見つかったら更新して終了
             }
