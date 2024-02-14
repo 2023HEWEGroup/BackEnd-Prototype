@@ -1,3 +1,4 @@
+const { groupBroadcasts } = require("./data/socketData");
 const { createRoom } = require("./requests/createRoom");
 const { enterRoom } = require("./requests/enterRoom");
 const { offerToNewAudience } = require("./requests/offerToNewAudience");
@@ -7,8 +8,6 @@ const { updateLiverSocketId } = require("./requests/updateLiverSocketId");
 
 
 const socketConnection = (io) => (socket) => {
-
-    console.log('A user connected');
 
     // グループ毎の配信一覧を見る共通ルームへ参加(groupのbroadcasts.jsx)
     socket.on('groupBroadcasts', (groupId) => {
@@ -56,7 +55,6 @@ const socketConnection = (io) => (socket) => {
     })
 
     socket.on('disconnect', () => {
-        console.log('A client disconnected');
     });
 };
 

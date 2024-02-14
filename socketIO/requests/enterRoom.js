@@ -1,8 +1,11 @@
 const { groupBroadcasts } = require('../data/socketData');
+const { isLiving } = require('../utils/isLiving');
 
 const enterRoom = (io) => (socket) => (roomId) => (userId) => (groupId) => (index)=> {
-    // 参加者をルームに追加
-    socket.join(`broadcast_${roomId}`);
+
+    const isLive = isLiving(userId); // ユーザーがすでに何らかの配信に参加中ならreturn;
+    if (isLive) return true;
+
     // 参加者のオブジェクトIDを配列に追加
     const room = groupBroadcasts[groupId][index];
     if (room) {
@@ -13,12 +16,11 @@ const enterRoom = (io) => (socket) => (roomId) => (userId) => (groupId) => (inde
     }
     // ブロードキャストルームのクライアントにイベントを送信する
     io.to(`broadcasts_${groupId}`).emit('groupBroadcasts', groupBroadcasts[groupId]);
-    console.log(room)
 
 
     // 配信ルームの人数
-    const numClientsInRoom = io.sockets.adapter.rooms.get(`broadcast_${roomId}`)?.size || 0;
-    console.log(`Room broadcast_${roomId} has ${numClientsInRoom} clients.`);
+    // const numClientsInRoom = io.sockets.adapter.rooms.get(`broadcast_${roomId}`)?.size || 0;
+    // console.log(`Room broadcast_${roomId} has ${numClientsInRoom} clients.`);
 };
 
 
