@@ -9,7 +9,7 @@ const updateLiverSocketId = (io) => (socket) => (roomId) => {
             const roomToUpdate = groupBroadcasts[groupId].find(room => room.roomId === roomId);
             if (roomToUpdate) {
                 roomToUpdate.liverSocketId = socket.id;
-                roomToUpdate.userSocketIds.push(socket.id);
+                roomToUpdate.users[0].socketId = socket.id; // ここでsocketIDフィールドを更新
                 // console.log(`Updated liverSocketId for room ${roomId} in group ${groupId}: ${socket.id}`);
 
                 // 新しいウィンドウの配信者のsocketIdをルームに追加
@@ -25,7 +25,7 @@ const updateLiverSocketId = (io) => (socket) => (roomId) => {
                 //     console.log("配信ルーム内のsocketId一覧", socketsInRoom);
                 // }
                 
-                console.log("配信者SocketID:", socket.id);
+                // console.log("配信者SocketID:", socket.id);
 
                 return; // 部屋が見つかったら更新して終了
             }

@@ -14,8 +14,7 @@ const createRoom = (io) => (socket) => (groupId) => (roomName) => (liverId) => (
         liverId: liverId,
         liverName: liverName,
         liverSocketId: socket.id, // 配信者のsocketIDを格納 (ここ宛てにcallしたり)
-        users: [liverId], // 配信者のオブジェクトIDを追加
-        userSocketIds: [], // 参加者全員分のSocketId配列
+        users: [{socketId: "", userId: liverId}], // 参加者全員のsocketIDとオブジェクトIDのセット配列 (disconnect時に対応するsocketIdのフィールドを一緒に削除するため)
     };
     // グループの配信一覧に新しい配信を追加する
     if (!groupBroadcasts[groupId]) {
