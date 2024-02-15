@@ -5,6 +5,9 @@ const { offerToNewAudience } = require("./requests/offerToNewAudience");
 const { showGroupBroadcasts } = require("./requests/showGroupBroadcasts");
 const { updateAudienceSocketId } = require("./requests/updateAuudienceSocketId");
 const { updateLiverSocketId } = require("./requests/updateLiverSocketId");
+const { disconnectSocketBroadcast2 } = require("./utils/disconnectSocketBroadcast2");
+const { disconnectSocketBroadcast } = require("./utils/disconnectSosketBroadcast");
+const { searchSocketIDFromUserId } = require("./utils/searchSocketIDFromUserId");
 
 
 const socketConnection = (io) => (socket) => {
@@ -25,13 +28,13 @@ const socketConnection = (io) => (socket) => {
     })
 
     // チャットルーム入室要求
-    socket.on('enterRoom', (roomId, userId, groupId, index) => {
-        enterRoom(io)(socket)(roomId)(userId)(groupId)(index);
+    socket.on('enterRoom', (roomId, userId, groupId) => {
+        enterRoom(io)(socket)(roomId)(userId)(groupId);
     });
 
     // 参加者socketId更新 (Audienceのwindowに)
-    socket.on('updateAudienceSocketId', (roomId) => {
-        updateAudienceSocketId(io)(socket)(roomId);
+    socket.on('updateAudienceSocketId', (roomId, userId, groupId) => {
+        updateAudienceSocketId(io)(socket)(roomId)(userId)(groupId);
     })
 
     // 配信者から参加者にofferを送信
@@ -54,7 +57,14 @@ const socketConnection = (io) => (socket) => {
         io.to(liverSocketId).emit("iceFromAudience", ICE, socket.id);
     })
 
+    // 配信を退出
+    socket.on('leaveRoom', (userId) => {
+        const socketId = searchSocketIDFromUserId(userId);
+        disconnectSocketBroadcast2(io)(socket)(socketId); // socketIdを渡して退出処理
+    })
+
     socket.on('disconnect', () => {
+        disconnectSocketBroadcast(io)(socket); // socketからidを取得して退出処理
     });
 };
 

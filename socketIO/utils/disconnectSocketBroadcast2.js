@@ -1,12 +1,12 @@
 const { groupBroadcasts } = require("../data/socketData");
 
 // 切断されたSocketIDが何らかの配信に参加していた場合、必要な処理を行い切断されたことを配信ルームとグループ配信一覧ルームに通知するミドルウェア
-
-exports.disconnectSocketBroadcast = (io) => (socket) => {
+// こちらはsocket.idではなくsocketIdを直接引数から渡す
+exports.disconnectSocketBroadcast2 = (io) => (socket) => (socketId) => {
     for (const groupId in groupBroadcasts) {
         const groupRooms = groupBroadcasts[groupId];
         for (const room of groupRooms) {
-            const index = room.users.findIndex(user => user.socketId === socket.id);
+            const index = room.users.findIndex(user => user.socketId === socketId);
             if (index !== -1) {
 
                 // 削除するユーザーのフィールド
@@ -40,7 +40,7 @@ exports.disconnectSocketBroadcast = (io) => (socket) => {
                     // 配信者でない場合はそのクライアントのみ削除
                     socket.leave(`broadcast_${room.roomId}`);
                     // 退出したクラウイアントの配信windowを閉じる要求
-                    io.to(socket.id).emit('closeWindow');
+                    io.to(socketId).emit('closeWindow');
                 }
                 
                 // ブロードキャストルームのクライアントにイベントを送信する

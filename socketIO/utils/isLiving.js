@@ -6,7 +6,7 @@ exports.isLiving = (userId) => {
     for (const groupBroadcast in groupBroadcasts) {
         for (const room of groupBroadcasts[groupBroadcast]) {
             for (const objId of room.users) {
-                if (userId === objId) {
+                if (userId === objId.userId) {
                     return true;
                 }
             }
