@@ -39,6 +39,8 @@ exports.disconnectSocketBroadcast = (io) => (socket) => {
                 } else {
                     // 配信者でない場合はそのクライアントのみ削除
                     socket.leave(`broadcast_${room.roomId}`);
+                    // 配信ルームのクライアントにルーム情報を送信
+                    io.to(`broadcast_${room.roomId}`).emit(`roomInfo`, room);
                     // 退出したクラウイアントの配信windowを閉じる要求
                     io.to(socket.id).emit('closeWindow');
                 }

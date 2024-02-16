@@ -57,7 +57,7 @@ const socketConnection = (io) => (socket) => {
         io.to(liverSocketId).emit("iceFromAudience", ICE, socket.id);
     })
 
-    // 配信を退出
+    // 配信を退出 (broadcastsのボタンから退出)
     socket.on('leaveRoom', (userId) => {
         const socketId = searchSocketIDFromUserId(userId);
         disconnectSocketBroadcast2(io)(socket)(socketId); // socketIdを渡して退出処理

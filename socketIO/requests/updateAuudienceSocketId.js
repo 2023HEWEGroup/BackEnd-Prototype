@@ -31,6 +31,9 @@ const updateAudienceSocketId = (io) => (socket) => (roomId) => (userId) => (grou
                 // ブロードキャストルームのクライアントにイベントを送信する
                 io.to(`broadcasts_${groupId}`).emit('groupBroadcasts', groupBroadcasts[groupId]);
 
+                // 配信ルームのクライアントにルーム情報を送信
+                io.to(`broadcast_${roomId}`).emit(`roomInfo`, roomToUpdate);
+
                 // 配信者に参加者が増えたことを通知する(offerを催促するためのcallとでも) 参加クライアント(移転先window)のsocketIDを付加
                 io.to(roomToUpdate.liverSocketId).emit('newAudience', socket.id);
                 return; // 部屋が見つかったら更新して終了
