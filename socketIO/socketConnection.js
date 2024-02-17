@@ -57,10 +57,20 @@ const socketConnection = (io) => (socket) => {
         io.to(liverSocketId).emit("iceFromAudience", ICE, socket.id);
     })
 
-    // 配信を退出
+    // 配信を退出 (broadcastsのボタンから退出)
     socket.on('leaveRoom', (userId) => {
         const socketId = searchSocketIDFromUserId(userId);
         disconnectSocketBroadcast2(io)(socket)(socketId); // socketIdを渡して退出処理
+    })
+
+    // 配信者がマイクの設定を変更したことを通知する(これは参加者側のレイアウト調節のため)
+    socket.on('isMute', (roomId, isMic) => {
+        io.to(`broadcast_${roomId}`).emit("isMute", isMic);
+    })
+
+    // 配信者が動画の共有設定を変更したことを通知する(これは参加者側のレイアウト調節のため)
+    socket.on('isShare', (roomId, isVideo) => {
+        io.to(`broadcast_${roomId}`).emit("isShare", isVideo);
     })
 
     socket.on('disconnect', () => {

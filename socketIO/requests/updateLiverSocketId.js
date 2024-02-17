@@ -15,6 +15,9 @@ const updateLiverSocketId = (io) => (socket) => (roomId) => {
                 // 新しいウィンドウの配信者のsocketIdをルームに追加
                 socket.join(`broadcast_${roomId}`);
 
+                // 配信者ウィンドウにルーム情報を送信
+                io.to(socket.id).emit(`roomInfo`, roomToUpdate);
+
                 // // 新しいウィンドウの配信者のsocketIdを表示
                 // console.log("配信ウィンドウの配信者socketid", socket.id);
 
