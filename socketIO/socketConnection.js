@@ -2,6 +2,7 @@ const { groupBroadcasts } = require("./data/socketData");
 const { createRoom } = require("./requests/createRoom");
 const { enterRoom } = require("./requests/enterRoom");
 const { offerToNewAudience } = require("./requests/offerToNewAudience");
+const { roomChat } = require("./requests/roomChat");
 const { showGroupBroadcasts } = require("./requests/showGroupBroadcasts");
 const { updateAudienceSocketId } = require("./requests/updateAuudienceSocketId");
 const { updateLiverSocketId } = require("./requests/updateLiverSocketId");
@@ -71,6 +72,11 @@ const socketConnection = (io) => (socket) => {
     // 配信者が動画の共有設定を変更したことを通知する(これは参加者側のレイアウト調節のため)
     socket.on('isShare', (roomId, isVideo) => {
         io.to(`broadcast_${roomId}`).emit("isShare", isVideo);
+    })
+
+    // 配信ルーム内でチャットが送信された場合の処理
+    socket.on('broadcastChat', (chat, groupId, roomId, userInfo) => {
+        roomChat(io)(socket)(chat)(groupId)(roomId)(userInfo);
     })
 
     socket.on('disconnect', () => {
