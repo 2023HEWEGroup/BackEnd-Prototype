@@ -19,9 +19,7 @@ app.use(express.json());
 app.use(helmet({
     crossOriginResourcePolicy: false, // フロントのsrc属性から画像を指定したとき、ヘルメットが阻止するのを防ぐ。
 }));
-app.use(cors({
-    origin: "http://localhost:3000",
-}))
+app.use(cors());
 
 
 // APIルートの分割

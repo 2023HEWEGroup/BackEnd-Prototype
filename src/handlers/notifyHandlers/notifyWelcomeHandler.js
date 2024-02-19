@@ -10,7 +10,7 @@ exports.notifyWelcomeHandler = async (req, res, next) => {
             from: process.env.WELCOME_MESSAGE_SENDER_ID,
             to: toUser._id,
             class: "アドミン",
-            main: process.env.WELCOME_MESSAGE_MAIN,
+            main: process.env.WELCOME_MAIL_MAIN,
         })
         await newNotify.save();
         next();

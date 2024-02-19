@@ -12,6 +12,8 @@ const roomChat = (io) => (socket) => (chat) => (groupId) => (roomId) => (userInf
                 roomToUpdate.chat.push({userInfo: userInfo, chat: chat});
                 // 配信ルームのクライアントにルーム情報を送信
                 io.to(`broadcast_${roomId}`).emit(`roomInfo`, roomToUpdate);
+                // 配信ルームのクライアントに読み上げ指示を送信
+                io.to(`broadcast_${roomId}`).emit(`chatSpeech`, roomToUpdate);
                 return;
             }
         }

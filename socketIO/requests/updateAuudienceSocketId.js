@@ -19,14 +19,15 @@ const updateAudienceSocketId = (io) => (socket) => (roomId) => (userId) => (grou
                 // console.log("配信ウィンドウの参加者socketid", socket.id);
 
                 // // 配信ルーム内のすべてのsocketId
-                // const room = io.sockets.adapter.rooms.get(`broadcast_${roomId}`);
-                // if (room) {
-                //     const socketsInRoom = Array.from(room);
-                //     console.log("配信ルーム内のsocketId一覧", socketsInRoom);
-                // }
+                const room = io.sockets.adapter.rooms.get(`broadcast_${roomId}`);
+                if (room) {
+                    const socketsInRoom = Array.from(room);
+                    console.log("配信ルーム内のsocketId一覧", socketsInRoom);
+                }
 
                 // console.log("参加者SocketID:", socket.id);
                 // console.log(roomToUpdate.users)
+                // console.log(groupBroadcasts[groupId])
 
                 // ブロードキャストルームのクライアントにイベントを送信する
                 io.to(`broadcasts_${groupId}`).emit('groupBroadcasts', groupBroadcasts[groupId]);
