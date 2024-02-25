@@ -56,6 +56,20 @@ const groupSchema = new mongoose.Schema({
             },
         ],
     },
+    chat: {
+        type: [
+            {
+                _id: {
+                    type: Schema.Types.ObjectId,
+                    ref: "Users",
+                },
+                chat: {
+                    type: String,
+                }
+            }
+        ],
+        default: []
+    }
 },
 {timestamps: true})
 
