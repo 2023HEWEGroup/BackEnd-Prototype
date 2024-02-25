@@ -36,6 +36,10 @@ const groupSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
+    defaultIcon: {
+        type: String,
+        required: true,
+    },
     products: {
         type: Array,
         default: [],
@@ -56,6 +60,20 @@ const groupSchema = new mongoose.Schema({
             },
         ],
     },
+    chat: {
+        type: [
+            {
+                _id: {
+                    type: Schema.Types.ObjectId,
+                    ref: "Users",
+                },
+                chat: {
+                    type: String,
+                }
+            }
+        ],
+        default: []
+    }
 },
 {timestamps: true})
 

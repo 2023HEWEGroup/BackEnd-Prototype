@@ -5,6 +5,7 @@ const Group = require("../../models/groups");
 
 exports.groupEstablishHandler = async (req, res, next) => {
     try {
+        const randomInt = Math.floor(Math.random() * 5) + 1;
         const user = req.bodyUser;
         const newGroup = await new Group({
             header: req.body.header,
@@ -12,6 +13,7 @@ exports.groupEstablishHandler = async (req, res, next) => {
             name: req.body.name,
             subTitle: req.body.subTitle,
             desc: req.body.desc,
+            defaultIcon: `default_group_icon${randomInt}.png`,
             tags: req.body.tags,
             owner: req.body.owner,
             member:

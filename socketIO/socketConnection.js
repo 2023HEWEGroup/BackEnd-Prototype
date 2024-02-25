@@ -9,6 +9,7 @@ const { updateLiverSocketId } = require("./requests/updateLiverSocketId");
 const { disconnectSocketBroadcast2 } = require("./utils/disconnectSocketBroadcast2");
 const { disconnectSocketBroadcast } = require("./utils/disconnectSosketBroadcast");
 const { searchSocketIDFromUserId } = require("./utils/searchSocketIDFromUserId");
+const { groupChatAdd } = require("./requests/groupChatAdd");
 
 
 const socketConnection = (io) => (socket) => {
@@ -77,6 +78,17 @@ const socketConnection = (io) => (socket) => {
     // 配信ルーム内でチャットが送信された場合の処理
     socket.on('broadcastChat', (chat, groupId, roomId, userInfo) => {
         roomChat(io)(socket)(chat)(groupId)(roomId)(userInfo);
+    })
+
+    // グループルーム追加処理
+    socket.on('enterGroup', (groupId) => {
+        // グループのルームに追加
+        socket.join(`group_${groupId}`);
+    })
+
+    // グループチャット追加処理
+    socket.on('groupChat', (chat, groupId, currentUser) => {
+        groupChatAdd(io)(socket)(chat, groupId, currentUser);
     })
 
     socket.on('disconnect', () => {
