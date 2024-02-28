@@ -6,13 +6,22 @@ const Group = require("../../models/groups");
 exports.getFavoriteGroup = async (req, res, next) => {
     try {
         const { page, pageSize } = req.query;
-        const groups = await Group.find()
-        .sort({ star: -1 }) // 人気順
-        .skip((page - 1) * pageSize)
-        .limit(Number(pageSize))
+        const groups = await Group.aggregate([
+            {
+                $addFields: {
+                    starUserCount: { $size: "$starUser" } // 配列の長さをフィールドに追加
+                }
+            },
+            {
+              $sort: { starUserCount: -1 } // 長さに基づいて降順でソート
+            },
+            {$skip: (page - 1) * Number(pageSize)},
+            {$limit: Number(pageSize)}
+        ]);
         req.groups = groups;
         next();
     } catch (err) {
+        console.log(err)
         return res.status(500).json(err);
     }
 }

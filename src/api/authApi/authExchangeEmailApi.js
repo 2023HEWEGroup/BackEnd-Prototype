@@ -16,7 +16,7 @@ router.post("/:_id",
     generateVerifyToken,
     authExchangeEmailHandler,
     (req, res, next) => {
-        sendEmail(req, res, next, req.body.unverifiedEmail, "LMAPからの認証メール", `認証トークン：${req.token}`)
+        sendEmail(req, res, next, req.body.unverifiedEmail, "UNGRAからの認証メール", `認証トークン：${req.token}`)
     },
     (req, res) => {
         return res.status(200).json("変更用メールの送信が完了しました");

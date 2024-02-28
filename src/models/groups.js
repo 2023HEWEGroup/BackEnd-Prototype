@@ -36,6 +36,10 @@ const groupSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
+    starUser: {
+        type: Array,
+        default: [],
+    },
     defaultIcon: {
         type: String,
         required: true,
