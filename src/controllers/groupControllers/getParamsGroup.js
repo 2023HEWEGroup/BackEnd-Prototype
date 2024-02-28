@@ -6,7 +6,7 @@ const Group = require("../../models/groups");
 exports.getParamsGroup = async (req, res, next) => {
     try {
         const group = await Group.findById(req.params.groupId)
-        .populate('owner', ['username']);
+        .populate('owner', ['username', 'isAuthorized', 'userId']);
         if (!group) {
             return res.status(404).json("グループが見つかりません (params)")
         }

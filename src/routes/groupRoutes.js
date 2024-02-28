@@ -11,6 +11,9 @@ const groupUpdateIconApi = require("../api/groupApi/groupUpdateIconApi");
 const groupDeleteIconApi = require("../api/groupApi/groupDeleteIconApi");
 const groupUpdateHeaderApi = require("../api/groupApi/groupUpdateHeaderApi");
 const groupDeleteHeaderApi = require("../api/groupApi/groupDeleteHeaderApi");
+const groupJoinApi = require("../api/groupApi/groupJoinApi");
+const groupGetMemberApi = require("../api/groupApi/groupGetMemberApi");
+const groupStarApi = require("../api/groupApi/groupStarApi");
 
 
 // APIルーティング
@@ -27,6 +30,9 @@ router.use("/updateIcon", groupUpdateIconApi);
 router.use("/deleteIcon", groupDeleteIconApi);
 router.use("/updateHeader", groupUpdateHeaderApi);
 router.use("/deleteHeader", groupDeleteHeaderApi);
+router.use("/join", groupJoinApi);
+router.use("/getMember", groupGetMemberApi);
+router.use("/star", groupStarApi);
 
 
 module.exports = router;
