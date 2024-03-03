@@ -6,7 +6,6 @@ const User = require("../../models/users");
 exports.getAllSearchUser = async (req, res, next) => {
     try {
         const { searchWord, page, pageSize, mode } = req.query;
-        const user = req.paramsUser;
 
         let query = { $or: [{username: {$regex: searchWord, $options: 'i'}}, {userId: {$regex: searchWord, $options: 'i'}}]};
 
